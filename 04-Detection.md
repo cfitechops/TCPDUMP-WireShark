@@ -1,63 +1,79 @@
 # Suricata
 
-- IDS/IPS (http/https, ftp, smd)
-- Automatic Protocol detection
-- Lua Scripting
-- Multi-threading
+- **IDS/IPS**:
 
-#### How does Suricata work ?
+  - Les systèmes IDS (Intrusion Detection System) analysent le trafic réseau pour détecter des signatures ou des comportements anormaux, mais n'interviennent pas directement sur le trafic. En revanche,
+    les IPS (Intrusion Prevention System) peuvent bloquer activement les paquets malveillants en fonction des règles définies.
+  - Suricata est un moteur IDS/IPS open source qui prend en charge la détection en temps réel et l'inspection du trafic réseau à l'aide de règles basées sur des signatures ou des comportements.
 
-- Network Traffic acquisition
-- Packet Persing and Analysis
-- Signature Matching
-- Deep Packet Inspection (Optional)
-- Action and Logging
+- **Détection automatique du protocole**:
+
+  - Suricata offre une fonctionnalité avancée de détection automatique des protocoles (HTTP, HTTPS, FTP, SMB, etc.), même si ces derniers utilisent des ports non standards. Cela permet d'appliquer
+    une logique de détection et de journalisation adaptée à chaque protocole.
+  - Cette capacité est utile pour détecter des menaces telles que les communications malveillantes ou les canaux de commande et contrôle.
+
+- **Script Lua**:
+
+  - Suricata prend en charge le scripting Lua pour créer des règles avancées permettant de détecter et de décoder des trafics malveillants complexes qui ne peuvent pas être identifiés par des règles classiques. Cela inclut l'analyse approfondie du trafic pour identifier certains types de malwares.
+  - Lua permet également d'étendre les fonctionnalités de Suricata, comme l'ajout de capacités spécifiques pour décoder ou analyser certains protocoles ou formats.
+
+- **Multithreading**:
+  - Suricata utilise intensivement le multithreading pour optimiser les performances sur des processeurs multicœurs. Chaque thread peut être configuré pour traiter un ensemble spécifique de tâches, comme l'analyse des paquets ou la gestion des alertes.
+  - La configuration du ratio "detect_thread_ratio" permet d'ajuster le nombre de threads en fonction du matériel disponible, ce qui est crucial pour maintenir une performance élevée dans les environnements à fort trafic réseau.
+
+#### Comment fonctionne Suricata ?
+
+- Acquisition de trafic réseau
+- Persing et analyse de paquets
+- Correspondance de signature
+- Inspection approfondie des paquets (en option)
+- Action et journalisation
 
 ```sh
 Rules --> Signature --> Alert --> log (Suricata.log)
 ```
 
-#### What Protocols are used in Suricata ?
+#### Quels protocoles sont utilisés chez Suricata ?
 
-- Basic Protocols:
+- Protocoles de base:
 
-  - TCP (Transmission Control Protocol)
-  - UDP (User Datagram Protocol)
-  - ICMP (Internet Control Message Protocol)
-  - IP (Internet Protocol)
+  - TCP (protocole de contrôle de transmission)
+  - UDP (protocole de datagramme utilisateur)
+  - Protocole ICMP (Internet Control Message Protocol)
+  - IP (Protocole Internet)
 
-- Application Layer ProtocolS(Layer 7):
+- Protocoles de couche d'application (couche 7):
 
-  - HTTP(Hypertext Transfer Protocol)
+  - HTTP (protocole de transfert hypertexte)
   - HTTP/2
-  - FTP (Filr Transfer Protocol)
-  - TLS/SSL (Transport Layer Security/Secure Sockets Layer)
-  - SMB (Server Message Block)
-  - DNS (Domain Name System)
+  - FTP (protocole de transfert de fichiers)
+  - TLS/SSL (couche de sécurité de la couche de transport/couche de sockets sécurisée)
+  - SMB (bloc de messages du serveur)
+  - DNS (Système de noms de domaine)
 
-#### Suricata Rules
+#### Règles de Suricata
 
 ```sh
 alert http $HOME_NET any -> $EXTERNAL_NET any (msg: "HTTP GET Request Containing Rule in URI"; flow:established, to_server; http.method; content: "GET"; http.uri; content: "rule"; fast_pattern; classtype:bad-unknown; sid:123; rev:1;)
 ```
 
-- A rule/signature consists of the following:
+- Une règle/signature se compose des éléments suivants:
 
-  - The **action**, determining what happens when the rule matches.
-  - The **header**, defining the protocol, IP addresses, ports and direction of the rule.
-  - The **rule options**, defining the specifics of the rule.
+  - **Action**, déterminant ce qui se passe lorsque la règle correspond.
+  - **Header**, définissant le protocole, les adresses IP, les ports et la direction de la règle.
+  - **Rule options**, définissant les spécificités de la règle.
 
-**Red** is the action, **green** is the header and **blue** are the options.
+**Rouge** est l'action, **Vert** est l'en-tête et **bleu** sont les options.
 
-- Valid actions ared:
+- Les actions valides sont:
 
-  - **alert** - generate an alert (IDS)
-  - **pass** - stop further inspection of the packet
-  - **drop** - drop packet and generate alert
-  - **reject** - send RST/ICMP unreach error to the sender of the macthing packet (IPS)
-  - **rejectsrc** - same as just reject.
-  - **rejectdst** - send RST/ICMP error packet to receiver of the macthing packet
-  - **rejectboth** - send RST/ICMP error packets to both sides of the conversation
+  - **alert** - générer une alerte (IDS)
+  - **pass** - arrêter toute inspection supplémentaire du paquet
+  - **drop** - déposer un paquet et générer une alerte
+  - **reject** - envoyer une erreur de non-atteinte RST/ICMP à l'expéditeur du paquet correspondant (IPS)
+  - **rejectsrc** - identique à simplement rejeter.
+  - **rejectdst** - envoie un paquet d'erreur RST/ICMP au récepteur du paquet correspondant
+  - **rejectboth** - envoie des paquets d'erreur RST/ICMP aux deux côtés de la conversation
 
 ```sh
 HOME_NET = <UBUNTU IP>
@@ -65,7 +81,7 @@ EXTERNAL_NET = "any"
 http = http://google.com/image/rule
 ```
 
-#### Installing Suricata IDS on Ubuntu Server
+#### Installation de Suricata IDS sur Ubuntu Server
 
 ```sh
 uname -a
@@ -85,7 +101,7 @@ ls
 cd /etc/suricata/rules
 ```
 
-#### Setting up Suricata IDS
+#### Configuration de Suricata IDS
 
 root@forwarder:~# sudo nano /etc/suricata/suricata.yaml
 
@@ -124,13 +140,13 @@ ls
 tail -f fast.log
 ```
 
-#### Labo: Nmap Scan detection using Suricata IDS
+#### Labo: Détection de scan Nmap à l'aide de Suricata IDS
 
 ```sh
 tail -f /var/log/suricata/fast.log
 ```
 
-#### Attack
+#### Attaque
 
 ```sh
 nmap -sS <IP>

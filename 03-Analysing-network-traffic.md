@@ -1,17 +1,17 @@
-# Analysing Network Traffic
+# Analyse du trafic réseau
 
-#### Finding Top Talkers (Hosts with Most Traffic)
+#### Trouver les meilleurs locuteurs (hôtes avec le plus de trafic)
 
-- Task1: Finding top talkers(Host with Most Traffic).
-- **Objective**: Identify which hosts are generating the most traffic.
+- Tâche 1 : Trouver les meilleurs locuteurs (hôte avec le plus de trafic).
+- **Objectif**: Détecter les retransmissions TCP et les problèmes de connexion.
 
 ![Wireshark](/assets/15.png)
 ![Wireshark](/assets/16.png)
 
-#### Detect Connection issues
+#### Détecter les problèmes de connexion
 
-- Task2: Identifying Connection issue.
-- **Objective**: Detect TCP retransmissions and connection issues.
+- Tâche 2 : identifier le problème de connexion.
+- **Objectif**: Détecter les retransmissions TCP et les problèmes de connexion.
 
 ```sh
 1. Le client envoie un paquet TCP au serveur

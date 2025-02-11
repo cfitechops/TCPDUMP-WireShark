@@ -1,9 +1,9 @@
-#### Display Filter and Capture Filter
+#### Filtre d'affichage et filtre de capture
 
 ![Wireshark](/assets/0.png)
 ![Wireshark](/assets/00.png)
 
-#### Wireshark Profiles
+#### Profils Wireshark
 
 ![Wireshark](/assets/01.png)
 ![Wireshark](/assets/02.png)
@@ -11,13 +11,13 @@
 ![Wireshark](/assets/04.png)
 ![Wireshark](/assets/05.png)
 
-#### Colorizing Traffic
+#### Colorisation du trafic
 
 ![Wireshark](/assets/06.png)
 ![Wireshark](/assets/07.png)
 ![Wireshark](/assets/08.png)
 
-#### TCP and UDP Port
+#### Port TCP et UDP
 
 ![Wireshark](/assets/10.png)
 ![Wireshark](/assets/11.png)

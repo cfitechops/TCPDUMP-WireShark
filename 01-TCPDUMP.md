@@ -1,33 +1,33 @@
 # TCPDUMP
 
-#### What is TCPDUMP ?
+#### Qu'est-ce que TCPDUMP ?
 
-- TCPDUMP is a Network Traffic analysis tool.
-- Key Points:
-  - Command-line packet analysis tool
-  - Captures and analyzes network traffic
-  - Works on most UNIX-like systems
+- TCPDUMP est un outil d'analyse du trafic réseau.
+- Points clés:
+  - Outil d'analyse de paquets en ligne de commande
+  - Capture et analyse le trafic réseau
+    -Fonctionne sur la plupart des systèmes de type UNIX
 
-#### Key Benefits of TCPDUMP
+#### Principaux avantages de TCPDUMP
 
 ```sh
-|---------------------------------------|---------------------------------------|
-| Real-time network monitoring          | Filter traffic for specific analysis  |
-|---------------------------------------|---------------------------------------|
-| Security investigation and forensics  | Pinpoint traffic issues               |
-|---------------------------------------|---------------------------------------|
+|------------------------------------------|-----------------------------------------------|
+| Surveillance du réseau en temps réel     | Filtrer le trafic pour une analyse spécifique |
+|------------------------------------------|-----------------------------------------------|
+| Enquête de sécurité et criminalistique   | Identifier les problèmes de trafic            |
+|------------------------------------------|-----------------------------------------------|
 ```
 
-#### Setting Up TCPDUMP
+#### Configuration de TCPDUMP
 
 ```sh
 sudo apt install tcpdump
 tcpdump --version
 ```
 
-#### TCPDUMP Command Format
+#### Format de la commande TCPDUMP
 
-- Basic TCPDUMP Command Format
+- Format de commande TCPDUMP de base
 
 ```sh
 tcpdump [options] [expression]
@@ -55,7 +55,7 @@ dst [IP]        : Filtre les paquets destinés à une adresse IP cible.
 tcp, udp, icmp  : Capture uniquement un protocole spécifique.
 ```
 
-#### Basic Commands
+#### Commandes de base
 
 ```sh
 sudo tcpdump -v
@@ -66,7 +66,7 @@ sudo tcpdump -i any > file.out
 sudo tcpdump -i wlp3s0 | tee file1.out
 ```
 
-#### Capture packets by protocols
+#### Capturer des paquets par protocoles
 
 ```sh
 ping <IP>
@@ -80,7 +80,7 @@ sudo nmap -sU <IP>
 sudo tcpdump -i wlp3s0 udp
 ```
 
-#### Capture Packets using Ports
+#### Capturer des paquets à l'aide de ports
 
 ```sh
 sudo tcpdump -i wlp3s0 host <IP>
@@ -95,7 +95,7 @@ sudo tcpdump -i wlp3s0 host <IP> -vv
 sudo nmap -sS <IP>
 ```
 
-#### Capture packets by specific source and destination
+#### Capturer des paquets par source et destination spécifiques
 
 ```sh
 sudo tcpdump -i wlp3s0 src host <IP> and dst host <IP>
@@ -107,7 +107,7 @@ sudo tcpdump -i wlp3s0 src host <IP> and dst port 443 -vvv
 sudo tcpdump -i wlp3s0 src host <IP> and dst net 192.168.1.0/24
 ```
 
-#### Capture Network Scanning Probes
+#### Capturer les sondes d'analyse du réseau
 
 ```sh
 # Une attaque par scan SYN
