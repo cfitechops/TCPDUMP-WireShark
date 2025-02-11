@@ -6,7 +6,7 @@
 - Points clés:
   - Outil d'analyse de paquets en ligne de commande
   - Capture et analyse le trafic réseau
-    -Fonctionne sur la plupart des systèmes de type UNIX
+  - Fonctionne sur la plupart des systèmes de type UNIX
 
 #### Principaux avantages de TCPDUMP
 
