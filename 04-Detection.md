@@ -92,7 +92,7 @@ root@forwarder:~# sudo nano /etc/suricata/suricata.yaml
 ```sh
 vars:
   address-groups:
-    HOME_NET: "[192.168.129.206]"
+    HOME_NET: "[IP]"
 
     #EXTERNAL_NET: "!$HOME_NET"
     EXTERNAL_NET: "any"
