@@ -51,13 +51,13 @@ alert http $HOME_NET any -> $EXTERNAL_NET any (msg: "HTTP GET Request Containing
 
 - Valid actions ared:
 
-  - alert - generate an alert (IDS)
-  - pass - stop further inspection of the packet
-  - drop - drop packet and generate alert
-  - reject - send RST/ICMP unreach error to the sender of the macthing packet (IPS)
-  - rejectsrc - same as just reject.
-  - rejectdst - send RST/ICMP error packet to receiver of the macthing packet
-  - rejectboth - send RST/ICMP error packets to both sides of the conversation
+  - **alert** - generate an alert (IDS)
+  - **pass** - stop further inspection of the packet
+  - **drop** - drop packet and generate alert
+  - **reject** - send RST/ICMP unreach error to the sender of the macthing packet (IPS)
+  - **rejectsrc** - same as just reject.
+  - **rejectdst** - send RST/ICMP error packet to receiver of the macthing packet
+  - **rejectboth** - send RST/ICMP error packets to both sides of the conversation
 
 ```sh
 HOME_NET = <UBUNTU IP>
