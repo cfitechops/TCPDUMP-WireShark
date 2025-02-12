@@ -35,3 +35,15 @@
 ![Wireshark](/assets/18.png)
 ![Wireshark](/assets/19.png)
 ![Wireshark](/assets/20.png)
+
+- Tâche 3: Analyse du trafic ICMP (Ping).
+- **Objectif**: Examiner les requêtes et les réponses ICMP.
+
+```sh
+|----------------------|
+|      Request         |
+| A ----------------> B|
+
+# ping microsoft.com -4
+# ping microsoft.com -t4
+```

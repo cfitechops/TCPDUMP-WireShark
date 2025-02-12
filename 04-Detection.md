@@ -150,4 +150,7 @@ tail -f /var/log/suricata/fast.log
 
 ```sh
 nmap -sS <IP>
+
+# nmap -sI zombie_host_ip <target IP address>
+nmap -sI 149.6.6.6 <target IP address>
 ```
