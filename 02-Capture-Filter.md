@@ -73,9 +73,12 @@ DNS                       | port udp 53             | dns                     |
 #### Profils Wireshark
 
 - 1 - Interface principale où vous travaillez, c'est ce q'uon appelle pan pan one, pan pan two et pan pan three.
+
 - 2 - Le premier vous montre tout le traffic, ce qui signifie à qu'elle heure particulière il a disparu ce qui signifie qu'elle à été capturé.
 - Le deuxiéme plan est d'analyser les details de ce paquet, si vous selectionnez un traffic particulier et les informations detaillées sur le traffic. Vous pourrez voir dans le deuxiéme pad. Donc la couche OSI signifie que c'est une trame qui indique comment les paquets passent d'une machine à une autre.
-  **Ces 7 couches vous permettent de colorer la même chôse ici.**
+
+- **Ces 7 couches vous permettent de colorer la même chôse ici.**
+
 - a - La première est votre couche physique où vous touver toutes les informations, toutes les trames et combien de morsures ont été traversées.
 - b - La deuxième est votre couches de liaison des données où les données sont commutées en fonction de l'addresse MAC. Vous trouverez donc l'adresse MAC source, l'adresse MAC de destination.
 - c - La troisiéme est votre couche reseau où vous trouverez toutes les données et les données transmises en fonction du routage. Vous trouverez donc toutes toutes les adresses IP. Adresse IP source et Adresse IP destination.
