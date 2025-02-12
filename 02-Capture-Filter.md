@@ -39,9 +39,9 @@ Inspection approfondie des paquets | Enregistrement et exportation |
 
 #### Filtre de capture vs. Filtre d'affichage
 
-- Filtre de capture: appliqué avant le début du processus de capture de paquets, pour limiter les paquets capturés.
+- **Filtre de capture:** appliqué avant le début du processus de capture de paquets, pour limiter les paquets capturés.
 
-- Filtre d'affichage: appliqué après la capture des paquets, pour filtrer ce qui est affiché dans l'outil d'analyse.
+- **Filtre d'affichage:** appliqué après la capture des paquets, pour filtrer ce qui est affiché dans l'outil d'analyse.
 
 ```sh
 --------------------------|-------------------------|-------------------------|
