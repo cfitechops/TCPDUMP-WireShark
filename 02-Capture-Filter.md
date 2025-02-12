@@ -79,10 +79,10 @@ DNS                       | port udp 53             | dns                       
 
 - **Ces 7 couches vous permettent de colorer la même chôse ici.**
 
-- a - La première est votre couche physique où vous touver toutes les informations, toutes les trames et combien de morsures ont été traversées.
-- b - La deuxième est votre couches de liaison des données où les données sont commutées en fonction de l'addresse MAC. Vous trouverez donc l'adresse MAC source, l'adresse MAC de destination.
-- c - La troisiéme est votre couche reseau où vous trouverez toutes les données et les données transmises en fonction du routage. Vous trouverez donc toutes toutes les adresses IP. Adresse IP source et Adresse IP destination.
-- d - La quatrième couche qui est la couche de transport où vous trouverez tous les services de PCP ou UDP et ajouterez leurs numéro de port associé. Port source et port de destination.
+  - a - La première est votre couche physique où vous touver toutes les informations, toutes les trames et combien de morsures ont été traversées.
+  - b - La deuxième est votre couches de liaison des données où les données sont commutées en fonction de l'addresse MAC. Vous trouverez donc l'adresse MAC source, l'adresse MAC de destination.
+  - c - La troisiéme est votre couche reseau où vous trouverez toutes les données et les données transmises en fonction du routage. Vous trouverez donc toutes toutes les adresses IP. Adresse IP source et Adresse IP destination.
+  - d - La quatrième couche qui est la couche de transport où vous trouverez tous les services de PCP ou UDP et ajouterez leurs numéro de port associé. Port source et port de destination.
 
 - 3 - Et celle ci est le paquet qui est visible sous la forme hexadécimale, ce sont donc les informations sur les paquet, que c'est sous la forme hexadécimale.
 
