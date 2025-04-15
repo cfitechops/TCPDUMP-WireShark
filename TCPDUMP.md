@@ -1,7 +1,5 @@
 # TCPDUMP
 
-#### Qu'est-ce que TCPDUMP ?
-
 - TCPDUMP est un outil CLI d'analyse de paquets réseau, disponible sur les systèmes UNIX.
 
 - Fonctionnalités clés pour :
@@ -64,87 +62,103 @@ Option	           Description	                                  Exemple
 -------------|-------------------------------------------|-------------------------|
 ```
 
-- **[Expression]**
+#### Filtres Essentiels
+
+- Par Adresse/Port
 
 ```sh
-host [IP]       : Capture le trafic provenant ou destiné à une adresse IP spécifique.
-port [number]   : Capture le trafic provenant ou destiné à un port spécifique.
-src [IP]        : Filtre les paquets provenant d'une adresse IP source.
-dst [IP]        : Filtre les paquets destinés à une adresse IP cible.
-tcp, udp, icmp  : Capture uniquement un protocole spécifique.
+sudo tcpdump host 192.168.1.100           # Trafic vers/depuis l'IP
+sudo tcpdump src 192.168.1.1             # Paquets depuis l'IP source
+sudo tcpdump dst port 443                # Trafic HTTPS
 ```
 
-#### Commandes de base
+- Par Protocole
 
 ```sh
-sudo tcpdump -v
-sudo tcpdump -vv -c 10
-sudo tcpdump -D
-sudo tcpdump -i any
-sudo tcpdump -i any > file.out
-sudo tcpdump -i wlp3s0 | tee file1.out
+sudo tcpdump icmp                         # Pings (ICMP)
+sudo tcpdump tcp                          # TCP uniquement
+sudo tcpdump udp port 53                  # DNS
 ```
 
-#### Capturer des paquets par protocoles
+- Combinaisons
 
 ```sh
-ping <IP>
-sudo tcpdump -i wlp3s0 icmp
-sudo tcpdump -i wlp3s0 tcp
-
-# Attack
-sudo nmap -sS <IP>
-sudo nmap -sU <IP>
-||
-sudo tcpdump -i wlp3s0 udp
+sudo tcpdump 'src 192.168.1.100 and dst port 80'  # HTTP depuis une IP
+sudo tcpdump 'net 192.168.1.0/24 and not port 22' # Tout sauf SSH
 ```
 
-#### Capturer des paquets à l'aide de ports
+#### Cas d'Usage Pratiques
+
+- Capture Basique
 
 ```sh
-sudo tcpdump -i wlp3s0 host <IP>
-
-# Attack
-sudo nmap -sS <IP>
-
-||
-sudo tcpdump -i wlp3s0 host <IP> -vv
-
-# Attack
-sudo nmap -sS <IP>
+sudo tcpdump -i eth0 -c 10 -vv  # 10 paquets avec détails
 ```
 
-#### Capturer des paquets par source et destination spécifiques
+- Sauvegarde & Analyse
 
 ```sh
-sudo tcpdump -i wlp3s0 src host <IP> and dst host <IP>
-
-nslookup cfitech.be
-
-sudo tcpdump -i wlp3s0 src host <IP> and dst port 443
-sudo tcpdump -i wlp3s0 src host <IP> and dst port 443 -vvv
-sudo tcpdump -i wlp3s0 src host <IP> and dst net 192.168.1.0/24
+sudo tcpdump -i any -w traffic.pcap       # Sauvegarde
+tcpdump -r traffic.pcap | grep "HTTP"     # Filtre post-capture
 ```
 
-#### Capturer les sondes d'analyse du réseau
+- Détection de Scans Réseau
 
 ```sh
-# Une attaque par scan SYN
+# Scan SYN (détection Nmap)
+sudo tcpdump -i eth0 'tcp[tcpflags] & tcp-syn != 0 and tcp[tcpflags] & tcp-ack == 0'
 
-          SYN (443, 80)
-Hacker  --------------------->  Serveur
-          SYN + ACK
-----------------------------------------
-        tcpdump capture active
+# Scan UDP
+sudo tcpdump -i eth0 'udp and portrange 1-1024'
 ```
 
+- Analyse HTTP/HTTPS
+
 ```sh
-#tcpdump 'tcp[tcpflags] & tcp-syn != 0 and tcp[tcpflags] & tcp-ack = 0'
+sudo tcpdump -A -i eth0 'port 80'         # HTTP en clair
+sudo tcpdump -X -i eth0 'port 443'        # HTTPS (en-têtes seulement)
+```
 
-tcpdump -i eth0 'tcp[tcpflags] & (tcp-syn) != 0 and tcp[tcpflags] & (tcp-ack) == 0 and (port 80 or port 443)'
+#### Bonnes Pratiques
 
-tcpdump -i eth0 'tcp[tcpflags] & (tcp-syn) != 0 and port (443 or 80)' -w scan_probes.pcap
+- Limiter l'impact : Utilisez `-c` pour éviter les captures infinies
 
-# Attack
-sudo nmap -sS <IP>
+```sh
+sudo tcpdump -i eth0 -c 500 'port 80'  # 500 paquets max
+```
+
+- Combiner avec Wireshark
+
+```sh
+sudo tcpdump -i eth0 -w capture.pcap && wireshark capture.pcap
+```
+
+- Filtres complexes : Utilisez des parenthèses
+
+```sh
+sudo tcpdump '(tcp or udp) and (port 80 or port 443)'
+```
+
+#### Astuces Avancées
+
+- Analyser le Trafic en Temps Réel
+
+```sh
+watch -n 1 "sudo tcpdump -i eth0 -c 5 port 80"  # Aperçu toutes les 1s
+```
+
+- Détection d'Attaques
+
+```sh
+# SYN Flood
+sudo tcpdump -i eth0 'tcp[tcpflags] & tcp-syn != 0' -c 100 | grep "SYN"
+
+# Trafic anormal
+sudo tcpdump -i eth0 'port not (22,80,443,53)'
+```
+
+- Capture du trafic web depuis une IP spécifique
+
+```sh
+sudo tcpdump -i wlan0 'src 192.168.1.100 and (port 80 or port 443)' -w web_traffic.pcap -vv
 ```
