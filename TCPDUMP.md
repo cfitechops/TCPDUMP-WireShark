@@ -52,13 +52,13 @@ Option	           Description	                                  Exemple
 -------------|-------------------------------------------|-------------------------
 -c 50            Limite le nombre de paquets	                  -c 100
 -------------|-------------------------------------------|-------------------------
--w file.pcap	   Sauvegarde dans un fichier .pcap	              -w capture.pcap
+-w file.pcap	   Sauvegarde dans un fichier .pcap	          -w capture.pcap
 -------------|-------------------------------------------|-------------------------
--r file.pcap	   Lit une capture existante	                    -r traffic.pcap
+-r file.pcap	   Lit une capture existante	                -r traffic.pcap
 -------------|-------------------------------------------|-------------------------
--n	             Désactive la résolution DNS	                  -nn (ports aussi)
+-n	             Désactive la résolution DNS	              -nn (ports aussi)
 -------------|-------------------------------------------|-------------------------
--v	             Verbosité (-vv pour plus de détails)	          -vvv
+-v	             Verbosité (-vv pour plus de détails)	      -vvv
 -------------|-------------------------------------------|-------------------------
 -s 0          	 Capture complète des paquets	                  -s 1500
 -------------|-------------------------------------------|-------------------------
