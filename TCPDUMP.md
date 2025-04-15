@@ -46,21 +46,21 @@ tcpdump [options] [filtres]
 
 ```sh
 -------------|-------------------------------------------|-------------------------
-Option	           Description	                               Exemple
+Option	           Description	                                  Exemple
 -------------|-------------------------------------------|-------------------------
--i eth0	         Interface réseau (any pour toutes)	        -i wlan0
+-i eth0	         Interface réseau (any pour toutes)	            -i wlan0
 -------------|-------------------------------------------|-------------------------
--c 50            Limite le nombre de paquets	              -c 100
+-c 50            Limite le nombre de paquets	                  -c 100
 -------------|-------------------------------------------|-------------------------
--w file.pcap	   Sauvegarde dans un fichier .pcap	          -w capture.pcap
+-w file.pcap	   Sauvegarde dans un fichier .pcap	              -w capture.pcap
 -------------|-------------------------------------------|-------------------------
--r file.pcap	   Lit une capture existante	                -r traffic.pcap
+-r file.pcap	   Lit une capture existante	                    -r traffic.pcap
 -------------|-------------------------------------------|-------------------------
--n	             Désactive la résolution DNS	               -nn (ports aussi)
+-n	             Désactive la résolution DNS	                  -nn (ports aussi)
 -------------|-------------------------------------------|-------------------------
--v	             Verbosité (-vv pour plus de détails)	      -vvv
+-v	             Verbosité (-vv pour plus de détails)	          -vvv
 -------------|-------------------------------------------|-------------------------
--s 0          	 Capture complète des paquets	              -s 1500
+-s 0          	 Capture complète des paquets	                  -s 1500
 -------------|-------------------------------------------|-------------------------
 ```
 
