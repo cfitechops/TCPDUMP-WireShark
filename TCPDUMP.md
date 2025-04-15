@@ -2,11 +2,15 @@
 
 #### Qu'est-ce que TCPDUMP ?
 
-- TCPDUMP est un outil d'analyse du trafic réseau.
-- Points clés:
-  - Outil d'analyse de paquets en ligne de commande
-  - Capture et analyse le trafic réseau
-  - Fonctionne sur la plupart des systèmes de type UNIX
+- TCPDUMP est un outil CLI d'analyse de paquets réseau, disponible sur les systèmes UNIX.
+
+- Fonctionnalités clés pour :
+
+  - 🕵️‍♂️ Capturer et analyser le trafic réseau en temps réel
+  - 🔍 Diagnostiquer des problèmes de connectivité
+  - 🛡️ Détecter des activités suspectes (scans, attaques DDoS)
+
+- Compatibilité : Linux, macOS, BSD (nécessite les droits root)
 
 #### Principaux avantages de TCPDUMP
 
@@ -18,31 +22,46 @@
 |------------------------------------------|-----------------------------------------------|
 ```
 
-#### Configuration de TCPDUMP
+#### Installation
+
+- Sur Debian/Ubuntu
 
 ```sh
-sudo apt install tcpdump
+sudo apt update && sudo apt install tcpdump -y
+```
+
+- Vérification
+
+```sh
 tcpdump --version
 ```
 
-#### Format de la commande TCPDUMP
-
-- Format de commande TCPDUMP de base
+#### Syntaxe de Base
 
 ```sh
-tcpdump [options] [expression]
+tcpdump [options] [filtres]
 ```
 
-- **[Options]**
+- **Options Principales**
 
 ```sh
--i [interface]  : Spécifie l'interface réseau (ex. 'eth0', 'wlan0').
--c [count]      : Capture un nombre spécifique de paquets (ex. '-c 100' pour 100 paquets).
--w [file]       : Écrit les paquets capturés dans un fichier (ex. '-w capture.pcap').
--r [file]       : Lit un fichier de capture existant (ex. '-r capture.pcap').
--n              : Désactive la résolution DNS pour afficher les adresses IP brutes.
--v, -vv, -vvv   : Augmente le niveau de verbosité pour des détails supplémentaires.
--s [snaplen]    : Définit la longueur du snapshot (nombre d'octets capturés par paquet).
+-------------|-------------------------------------------------------------
+Option	           Description	                                 Exemple
+-------------|-------------------------------------------------------------
+-i eth0	         Interface réseau (any pour toutes)	           -i wlan0
+-------------|-------------------------------------------------------------
+-c 50            Limite le nombre de paquets	-c 100
+-------------|-------------------------------------------------------------
+-w file.pcap	   Sauvegarde dans un fichier .pcap	-w capture.pcap
+-------------|------------------------------------------------------------
+-r file.pcap	   Lit une capture existante	-r traffic.pcap
+-------------|-------------------------------------------------------------
+-n	             Désactive la résolution DNS	-nn (ports aussi)
+-------------|-------------------------------------------------------------
+-v	             Verbosité (-vv pour plus de détails)	-vvv
+-------------|-------------------------------------------------------------
+-s 0          	 Capture complète des paquets	-s 1500
+-------------|-------------------------------------------------------------
 ```
 
 - **[Expression]**
