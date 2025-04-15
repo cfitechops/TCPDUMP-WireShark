@@ -56,7 +56,7 @@ Option	           Description	                                  Exemple
 -------------|-------------------------------------------|-------------------------|
 -r file.pcap	   Lit une capture existante	                -r traffic.pcap
 -------------|-------------------------------------------|-------------------------|
--n	             Désactive la résolution DNS	              -nn (ports aussi)
+-n	             Désactive la résolution DNS	            -nn (ports aussi)
 -------------|-------------------------------------------|-------------------------|
 -v	             Verbosité (-vv pour plus de détails)	      -vvv
 -------------|-------------------------------------------|-------------------------|
